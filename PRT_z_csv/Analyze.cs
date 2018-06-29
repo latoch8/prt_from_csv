@@ -41,7 +41,11 @@ namespace PRT_z_csv
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////Funkcja glowna/////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+        /// <summary>
+        /// Analiza wyników 
+        /// </summary>
+        /// <param name="list">Lista do analizy</param>
+        /// <param name="failList">Lista błędów które nas interesują</param>
         public void startAnalyse(List<Results> list, ListBox failList)
         {
             List<Analyze> failPerEq = new List<Analyze>(); //(Equipment, FailureLabel, Counts)
@@ -64,6 +68,13 @@ namespace PRT_z_csv
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////Funkcje dodatkowe//////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Zwraca listę faili posortowanych wg ilości. Jezeli perEq jest true to mamy informacje o eq w danej liscie
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="failList"></param>
+        /// <param name="perEq">True - info o eq, False - tylko ilosc blędów</param>
+        /// <returns></returns>
         private List<Analyze> listOfFail(List<Results> list, ListBox failList, bool perEq = true)
         {
             var resultClass = new Results();
@@ -99,7 +110,11 @@ namespace PRT_z_csv
             tempList = tempList.OrderByDescending(x => x.Counts).ToList();
             return tempList;
         }
-
+        /// <summary>
+        /// Sprawdza które błędy są wartościowe i zwraca listę tych ważnych
+        /// </summary>
+        /// <param name="CountOfFail"></param>
+        /// <param name="FailPerEq"></param>
         private void checkWhichFailIsValuable(ref List<Analyze> CountOfFail, ref List<Analyze> FailPerEq)
         {
             int countOfImportantFail = 0;
@@ -116,7 +131,13 @@ namespace PRT_z_csv
             }
             FailPerEq = tempList;
         }
-
+        /// <summary>
+        /// Zlicza i ocenia wartość napraw. Ocenia czy problem był związany z awarią testera czy jednak produkt był wadliwy.
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="CountOfFail"></param>
+        /// <param name="uniqueDefectLocation"></param>
+        /// <param name="uniqueDefectText"></param>
         private void repairForFail(List<Results> list, List<Analyze> CountOfFail, string[] uniqueDefectLocation, string[] uniqueDefectText) //zliczyc naprawy
         {
             foreach (var failItem in CountOfFail)

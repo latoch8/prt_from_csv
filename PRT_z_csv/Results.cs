@@ -30,15 +30,22 @@ namespace PRT_z_csv
             public string FailureLabel { get; set; }
             public int Counts { get; set; }
         }
-
-        /* Funkcje do wycinania mniejszych list
-         * 
-         */
-        public List<Results> OneFamilyList(List<Results> list, string familyName) //zwraca tablice dla jednej rodziny
+        /// <summary>
+        /// Zwraca tablice dla jednej rodziny
+        /// </summary>
+        /// <param name="list">Lista z której sortuje</param>
+        /// <param name="familyName">Rodzina po której sortuje</param>
+        /// <returns></returns>
+        public List<Results> OneFamilyList(List<Results> list, string familyName) 
         {
             return list.Where(x => x.Family == familyName).ToList(); ; 
         }
-
+        /// <summary>
+        /// Zwraca tablice z zaznaczonymi opcjami StepText
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="stepTextList"></param>
+        /// <returns></returns>
         public List<Results> OneSteptextList (List<Results> list, CheckedListBox stepTextList)
         {
             List<Results> onlyOneStepText = new List<Results>();
@@ -47,10 +54,15 @@ namespace PRT_z_csv
                 var temp = list.Where(x => x.StepText == item.ToString()).ToList();
                 onlyOneStepText = onlyOneStepText.Concat(temp).ToList();
             }
-            return onlyOneStepText; //zwraca tablice z zaznaczonymi opcjami StepText
+            return onlyOneStepText; 
         }
-
-        public List<Analyze> TopFails(List<Results> list, ListBox failList) //wylicza ilosc bledow i sortuje od najwiekszej ilosci (docelowo tylko top5, wstepnie wszystko)
+        /// <summary>
+        /// Wylicza ilosc bledow i sortuje od najwiekszej ilosci (docelowo tylko top5, wstepnie wszystko)
+        /// </summary>
+        /// <param name="list">Lista z której wyciągamy błędy</param>
+        /// <param name="failList">Lista błędów które nas interesują</param>
+        /// <returns></returns>
+        public List<Analyze> TopFails(List<Results> list, ListBox failList)
         {
             var topList = new List<Analyze>();
             foreach (var item in failList.Items)
@@ -61,16 +73,22 @@ namespace PRT_z_csv
             var sorted = topList.OrderByDescending(x => x.Counts).ToList();
             return sorted;
         }
-
-        public List<Results> OnlyOneFail(List<Results> list, string fail) //zwraca tablice z jednym bledem do wyswietlenia
+        /// <summary>
+        /// Zwraca tablice z jednym bledem do wyswietlenia
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="fail"></param>
+        /// <returns></returns>
+        public List<Results> OnlyOneFail(List<Results> list, string fail)
         {
             return list.Where(x => x.FailureLabel == fail).ToList();
         }
-
-        /* Funkcje zwracajace unikalne wartosci dla poszczegolnych tablic
-         * 
-         */
-        public string[] UniqueFamilyList(List<Results> list) //zwraca wszystkie rodziny z listy
+        /// <summary>
+        /// Zwraca wszystkie rodziny z listy
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public string[] UniqueFamilyList(List<Results> list)
         {
             var unique = new List<Unique>();
             foreach (var item in list)
@@ -79,8 +97,12 @@ namespace PRT_z_csv
             }
             return UniqueFcn(unique);
         }
-
-        public string[] UniqueSteptextList(List<Results> list) //zwraca equipmenty dla danej rodziny
+        /// <summary>
+        /// Zwraca equipmenty dla danej rodziny
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public string[] UniqueSteptextList(List<Results> list) 
         {
             var unique = new List<Unique>();
             foreach (var item in list)
@@ -89,8 +111,12 @@ namespace PRT_z_csv
             }
             return UniqueFcn(unique);
         }
-
-        public string[] UniqueFailList(List<Results> list) //zwraca faile dla danego equipmentu
+        /// <summary>
+        /// Zwraca faile dla danego equipmentu
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public string[] UniqueFailList(List<Results> list) 
         {
             var unique = new List<Unique>();
             foreach (var item in list)
@@ -99,7 +125,11 @@ namespace PRT_z_csv
             }
             return UniqueFcn(unique);
         }
-
+        /// <summary>
+        /// Zwraca Liste pozycji na których jest błąd
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
         public string[] UniqueDefectLocation(List<Results> list)
         {
             var unique = new List<Unique>();
@@ -109,7 +139,11 @@ namespace PRT_z_csv
             }
             return UniqueFcn(unique);
         }
-
+        /// <summary>
+        /// Zwraca listę analiz naprawiacza
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
         public string[] UniqueDefectText(List<Results> list)
         {
             var unique = new List<Unique>();
@@ -119,8 +153,12 @@ namespace PRT_z_csv
             }
             return UniqueFcn(unique);
         }
-
-        private string[] UniqueFcn(List<Unique> unique) //wycina unikaty z listy i przepisuje do tablicy
+        /// <summary>
+        /// Zwraca unikalne wartości dla listy jednowymiarowej
+        /// </summary>
+        /// <param name="unique"></param>
+        /// <returns></returns>
+        private string[] UniqueFcn(List<Unique> unique) 
         {
             string[] temp = new string[1000]; //tymczasowo za duza tablica
             unique = unique.OrderBy(x => x.uniqueItem).ToList();
@@ -134,7 +172,11 @@ namespace PRT_z_csv
             Array.Resize(ref temp, i); //dopasowanie tablicy do ilosci elementow
             return temp;
         }
-
+        /// <summary>
+        /// Zwraca liste equipmentow
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
         public string[] UniqueEquipmentList(List<Results> list)
         {
             var unique = new List<Unique>();
