@@ -37,13 +37,15 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Results = new System.Windows.Forms.TabPage();
             this.Analyse = new System.Windows.Forms.TabPage();
-            this.Report = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.Report = new System.Windows.Forms.ListBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.table)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Top5)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Results.SuspendLayout();
             this.Analyse.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // wczytaj_csv
@@ -114,7 +116,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1327, 641);
+            this.tabControl1.Size = new System.Drawing.Size(1570, 545);
             this.tabControl1.TabIndex = 10;
             this.tabControl1.Click += new System.EventHandler(this.tabControl1_Click);
             // 
@@ -122,6 +124,7 @@
             // 
             this.Results.Controls.Add(this.wczytaj_csv);
             this.Results.Controls.Add(this.table);
+            this.Results.Controls.Add(this.dataGridView1);
             this.Results.Controls.Add(this.Top5);
             this.Results.Controls.Add(this.familyList);
             this.Results.Controls.Add(this.failList);
@@ -129,7 +132,7 @@
             this.Results.Location = new System.Drawing.Point(4, 22);
             this.Results.Name = "Results";
             this.Results.Padding = new System.Windows.Forms.Padding(3);
-            this.Results.Size = new System.Drawing.Size(1319, 615);
+            this.Results.Size = new System.Drawing.Size(1562, 519);
             this.Results.TabIndex = 0;
             this.Results.Text = "Wyniki";
             this.Results.UseVisualStyleBackColor = true;
@@ -145,14 +148,6 @@
             this.Analyse.Text = "Analiza";
             this.Analyse.UseVisualStyleBackColor = true;
             // 
-            // Report
-            // 
-            this.Report.FormattingEnabled = true;
-            this.Report.Location = new System.Drawing.Point(0, 0);
-            this.Report.Name = "Report";
-            this.Report.Size = new System.Drawing.Size(1319, 615);
-            this.Report.TabIndex = 0;
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(579, 546);
@@ -163,11 +158,27 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // Report
+            // 
+            this.Report.FormattingEnabled = true;
+            this.Report.Location = new System.Drawing.Point(0, 0);
+            this.Report.Name = "Report";
+            this.Report.Size = new System.Drawing.Size(1319, 615);
+            this.Report.TabIndex = 0;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(1107, 6);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(438, 221);
+            this.dataGridView1.TabIndex = 9;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1327, 641);
+            this.ClientSize = new System.Drawing.Size(1570, 545);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -176,6 +187,7 @@
             this.tabControl1.ResumeLayout(false);
             this.Results.ResumeLayout(false);
             this.Analyse.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -193,6 +205,7 @@
         private System.Windows.Forms.TabPage Analyse;
         private System.Windows.Forms.ListBox Report;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 
